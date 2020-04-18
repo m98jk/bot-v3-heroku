@@ -13,8 +13,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bot.js"
+    "start": "node index.js"
   },
-  "author": "",
+  "author": "m98jk",
   "license": "ISC"
 }
