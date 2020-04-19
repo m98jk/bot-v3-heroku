@@ -1,11 +1,14 @@
-const TelegramBot = require("node-telegram-bot-api");
-
-const express = require("express");
-
 require("dotenv").config();
+const TelegramBot = require("node-telegram-bot-api");
+const http = require("http");
 
 const token = process.env.TELEGRAM_TOKEN;
-let bot;
+
+let bot = "";
+
+const server = http.createServer((req, res) => {
+  res.end("Telegram Bot is Live 🔥");
+});
 
 if (process.env.NODE_ENV === "production") {
   bot = new TelegramBot(token);
@@ -15,6 +18,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 bot.onText(/\/start/, (msg) => {
+  console.log(msg.text);
   bot.sendMessage(msg.chat.id, "Welcome");
 });
 
@@ -29,13 +33,10 @@ bot.onText(/\/start/, (msg) => {
 //   }
 // });
 
-//
-
-const app = express();
-
-app.listen(process.env.PORT);
-
-app.post("/" + process.env.TELEGRAM_TOKEN, (req, res) => {
-  bot.processUpdate(req.body);
-  res.sendStatus(200);
+server.listen(process.env.PORT || 4000, (err) => {
+  if (!err) {
+    console.log(
+      `server is listening on port http://localhost:${process.env.PORT || 4000}`
+    );
+  }
 });
