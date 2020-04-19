@@ -35,7 +35,7 @@ const app = express();
 
 app.listen(process.env.PORT);
 
-app.post("/" + bot.token, (req, res) => {
+app.post("/" + process.env.TELEGRAM_TOKEN, (req, res) => {
   bot.processUpdate(req.body);
   res.sendStatus(200);
 });
