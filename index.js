@@ -1,6 +1,7 @@
 const TelegramBot = require("node-telegram-bot-api");
 
-const express = require("express");
+const http = require("http");
+
 
 require("dotenv").config();
 
@@ -31,11 +32,11 @@ bot.on("message", (msg) => {
 
 //
 
-const app = express();
-
-app.listen(process.env.PORT);
-
-app.post("/" + process.env.TELEGRAM_TOKEN, (req, res) => {
-  bot.processUpdate(req.body);
-  res.sendStatus(200);
+server.listen(process.env.PORT || 4000, (err) => {
+  if (!err) {
+    console.log(
+      `server is listening on port http://localhost:${process.env.PORT || 4000}`
+    );
+  }
 });
+
