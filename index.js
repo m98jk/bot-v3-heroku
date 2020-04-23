@@ -5,7 +5,7 @@ const token = process.env.TELEGRAM_TOKEN;
 const bot = new TeleBot(token);
 
 const server = http.createServer((req, res) => {
-  res.end("Telegram Bot is Live 🔥");
+  res.end("Telegram Bot is Live ...WoW");
 });
 
 bot.on("/hello", (msg) => {
